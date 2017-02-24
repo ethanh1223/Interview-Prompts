@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <p>a</p>
+  <script type="text/javascript">
+    var timeNodeText = document.querySelector('p');
+
+    var updateTime = function () {
+      console.log('UPDATING TIME')
+      var hours = new Date().getHours();
+      var minutes = new Date().getMinutes();
+      var seconds = new Date().getSeconds();
+
+      var timeString = hours + ':' + minutes + ':' + seconds;
+
+      timeNodeText.innerText = timeString;      
+    }
+
+    setInterval(updateTime, 1000);
+
+  </script>
+</body>
+</html>
