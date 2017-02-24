@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <button> Ethan </button>
+  <button> Laura </button>
+  <p></p>
+  <script type="text/javascript">
+    var text = document.querySelector('p');
+
+    var buttons = document.querySelectorAll('button');
+
+    var ethanText = 'Ethan is too smart';
+    var lauraText = 'Laura is too smart';
+
+    buttons.forEach(button => {
+      button.addEventListener('click', (e => {
+        if (e.target.innerText === 'Ethan') {
+          text.innerText = ethanText;
+        } else {
+          text.innerText = lauraText;
+        }
+      }))
+    })
+  </script>
+</body>
+</html>
