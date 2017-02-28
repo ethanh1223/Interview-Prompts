@@ -1,0 +1,96 @@
+<!-- Need to finish -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<table>
+  <tr>
+    <th class='greeting'>greetings</th>
+    <th class='name'>names</th>
+  </tr>
+</table>
+<script type="text/javascript">
+  var sampleNames = ['ethan', 'erik', 'dan', 'mylani', 'bill']
+  var sampleGreetings = ['hey', 'hi', 'hello', 'yo', 'whatup']
+
+  var renderTable = function () {
+
+    var tableBody = document.querySelector('tbody');
+
+
+    if (tableBody.children.length > 1) {
+      console.log('ALREADY DEFINED', tableBody.children)
+      while(tableBody.children.length > 1) {
+        tableBody.removeChild(tableBody.children[1])
+      }
+    } 
+
+    var greetingRows = sampleGreetings.map(greeting => {
+      var data = document.createElement('td');
+      data.classList.add('greeting');
+      data.innerText = greeting;
+      var row = document.createElement('tr');
+      row.appendChild(data);
+      return row
+    })
+
+    greetingRows.forEach(row => {
+      tableBody.append(row);
+    })
+    
+    for (var i = 0; i < sampleNames.length; i++) {
+      var data = document.createElement('td');
+      data.classList.add('name');
+      data.innerText = sampleNames[i];
+      greetingRows[i].append(data);
+    }
+
+  }
+
+  renderTable();
+
+  var tableHeaders = document.querySelectorAll('th');
+
+  var nameSort = 'unsorted';
+  var greetingSort = 'unsorted';
+
+  tableHeaders.forEach(header => {
+    header.addEventListener('click', e => {
+      var type = e.target.classList[0];
+      if (type === 'name') {
+        if (nameSort === 'unsorted' || nameSort === 'descending') {
+          sampleNames.sort();
+          nameSort = 'ascending';
+        } else {
+          console.log('HIT IT')
+          //SORT IN DESCENDING
+          sampleNames.sort(function (a,b) {
+            return a < b;
+          })
+          nameSort = 'descending';
+        }
+
+      } else {
+        if (greetingSort === 'unsorted' || greetingSort === 'descending') {
+          sampleGreetings.sort();
+          greetingSort = 'ascending';
+        } else {
+          sampleGreetings.sort(function (a,b) {
+            return a < b;
+          })
+          //sort in descending
+          greetingSort = 'descending';
+        }
+      }
+
+      renderTable();
+    })
+  })
+
+</script>
+</body>
+</html>
